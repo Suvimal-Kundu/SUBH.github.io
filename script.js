@@ -1,72 +1,56 @@
-$(document).ready(function(){
-    $(window).scroll(function(){
-        // sticky navbar on scroll script
-        if(this.scrollY > 20){
-            $('.navbar').addClass("sticky");
-        }else{
-            $('.navbar').removeClass("sticky");
-        }
-        
-        // scroll-up button show/hide script
-        if(this.scrollY > 500){
-            $('.scroll-up-btn').addClass("show");
-        }else{
-            $('.scroll-up-btn').removeClass("show");
-        }
-    });
+$(document).ready(function () {
+  // Sticky navbar & scroll-up toggle
+  $(window).scroll(function () {
+    if (this.scrollY > 40) {
+      $(".navbar").addClass("sticky");
+    } else {
+      $(".navbar").removeClass("sticky");
+    }
 
-    // slide-up script
-    $('.scroll-up-btn').click(function(){
-        $('html').animate({scrollTop: 0});
-        // removing smooth scroll on slide-up button click
-        $('html').css("scrollBehavior", "auto");
-    });
+    if (this.scrollY > 400) {
+      $(".scroll-up-btn").addClass("show");
+    } else {
+      $(".scroll-up-btn").removeClass("show");
+    }
+  });
 
-    $('.navbar .menu li a').click(function(){
-        // applying again smooth scroll on menu items click
-        $('html').css("scrollBehavior", "smooth");
-    });
+  // Scroll to top
+  $(".scroll-up-btn").click(function () {
+    $("html, body").animate({ scrollTop: 0 }, 500);
+  });
 
-    // toggle menu/navbar script
-    $('.menu-btn').click(function(){
-        $('.navbar .menu').toggleClass("active");
-        $('.menu-btn i').toggleClass("active");
-    });
+  // Mobile menu toggle
+  $(".menu-btn").click(function () {
+    $(".menu").toggleClass("active");
+    $(".menu-btn i").toggleClass("fa-bars fa-xmark");
+  });
 
-    // typing text animation script
-    var typed = new Typed(".typing", {
-        strings: ["Salesforce Administrator", "Business Analyst", "Salesforce BA"],
-        typeSpeed: 100,
-        backSpeed: 60,
-        loop: true
-    });
+  $(".menu a").click(function () {
+    $(".menu").removeClass("active");
+    $(".menu-btn i").removeClass("fa-xmark").addClass("fa-bars");
+  });
 
-    var typed = new Typed(".typing-2", {
-        strings: ["Salesforce Administrator", "Business Analyst", "Salesforce BA"],
-        typeSpeed: 100,
-        backSpeed: 60,
-        loop: true
-    });
+  // Typing animation for Hero
+  new Typed(".typing", {
+    strings: [
+      "Business Systems Analyst",
+      "Salesforce BA & Admin",
+      "Agile & Workflow Specialist",
+    ],
+    typeSpeed: 80,
+    backSpeed: 45,
+    loop: true,
+  });
 
-    // owl carousel script
-    $('.carousel').owlCarousel({
-        margin: 20,
-        loop: true,
-        autoplayTimeOut: 2000,
-        autoplayHoverPause: true,
-        responsive: {
-            0:{
-                items: 1,
-                nav: false
-            },
-            600:{
-                items: 2,
-                nav: false
-            },
-            1000:{
-                items: 3,
-                nav: false
-            }
-        }
-    });
+  // Typing animation for About section
+  new Typed(".typing-2", {
+    strings: [
+      "Business Systems Analyst",
+      "Salesforce Administrator",
+      "Agile Practitioner",
+    ],
+    typeSpeed: 80,
+    backSpeed: 45,
+    loop: true,
+  });
 });
